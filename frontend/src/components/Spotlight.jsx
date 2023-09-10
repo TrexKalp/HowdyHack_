@@ -111,7 +111,7 @@ const businessdata = [
 
 
 
-const NearYou = () => {
+const Spotlight = () => {
   const containerStyle = {
     display: "grid",
     gridTemplateColumns: "repeat(3, 1fr)", 
@@ -166,5 +166,5 @@ const NearYou = () => {
 };
 
 
-export default NearYou;
+export default Spotlight;
 

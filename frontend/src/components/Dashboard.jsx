@@ -273,7 +273,7 @@ const Dashboard = () => {
         {activeContent === "Upload" && <Upload />}
         {activeContent === "Shop" && <Shop />}
         {activeContent === "Explore" && <Map />}
-        {activeContent === "Spotlight" && <NearYou />}
+        {activeContent === "Spotlight" && <Spotlight />}
       </Box>
     </Box>
   );
