@@ -33,11 +33,10 @@ import {
 } from "react-icons/fi";
 import DarkModeSwitch from "./DarkModeSwitch";
 import Upload from "./Upload";
-// import use states from react
-import React from "react";
 import NearYou from "./NearYou";
 import Shop from "./Shop";
 import Map from "./Map";
+import React, { useState } from "react";
 
 const LinkItems = [
   { name: "Explore", icon: FiHome },
@@ -133,7 +132,8 @@ const NavItem = ({ icon, children, setActiveContent, ...rest }) => {
 const MobileNav = ({ onOpen, ...rest }) => {
   const savedFirstName = localStorage.getItem("firstName");
   const savedLastName = localStorage.getItem("lastName");
-  const tokens = localStorage.getItem("points");
+  const [tokens, setTokens] = useState(localStorage.getItem("points") || 0);
+
   return (
     <Flex
       ml={{ base: 0, md: 60 }}

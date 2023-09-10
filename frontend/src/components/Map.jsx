@@ -5,7 +5,7 @@ const Map = () => {
 
   useEffect(() => {
     // Function to initialize the map
-    const mapStyles = [
+    const mapStyle = [
       {
         featureType: "all",
         elementType: "labels.text.fill",
@@ -74,35 +74,13 @@ const Map = () => {
     ];
 
     window.initMap = function () {
-      // Create a map centered at the specified coordinates
-
-      const start = { lat: 30.617712020874023, lng: -96.31748962402344 }; // Example start point (e.g., Texas A&M University)
-
-      const directionsService = new window.google.maps.DirectionsService();
-      const directionsRenderer = new window.google.maps.DirectionsRenderer();
-
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          function (position) {
-            setCurrentLocation({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          function (error) {
-            console.error("Error obtaining geolocation", error);
-          }
-        );
-      }
-
       const map = new window.google.maps.Map(document.getElementById("map"), {
         center: { lat: 30.617712020874023, lng: -96.31748962402344 },
         zoom: 14,
-        styles: mapStyles,
+        mapStyle,
       });
 
-      directionsRenderer.setMap(map);
-      directionsRenderer.setPanel(document.getElementById("directionsPanel"));
+      let infoWindow = new window.google.maps.InfoWindow();
 
       // Define marker positions and titles
       const markers = [
@@ -217,24 +195,6 @@ const Map = () => {
       ];
 
       // A function to calculate and display route
-      const calculateAndDisplayRoute = (end) => {
-        directionsService.route(
-          {
-            origin: start,
-            destination: end,
-            travelMode: window.google.maps.TravelMode.DRIVING,
-          },
-          (response, status) => {
-            if (status === "OK") {
-              directionsRenderer.setDirections(response);
-            } else {
-              window.alert("Directions request failed due to " + status);
-            }
-          }
-        );
-      };
-
-      // Create markers and add click listeners
       markers.forEach(({ position, title }) => {
         const marker = new window.google.maps.Marker({
           position,
@@ -243,7 +203,8 @@ const Map = () => {
         });
 
         marker.addListener("click", () => {
-          calculateAndDisplayRoute(position);
+          infoWindow.setContent(title);
+          infoWindow.open(map, marker);
         });
       });
     };
@@ -253,32 +214,15 @@ const Map = () => {
     script.async = true;
     document.head.appendChild(script);
 
+    window.initMap = initMap;
+
     return () => {
       document.head.removeChild(script);
+      window.initMap = undefined;
     };
   }, []);
 
-  return (
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <div id="map" style={{ width: "100%", height: "400px" }} />
-      <div
-        id="directionsPanel"
-        style={{
-          width: "100%",
-          height: "400px",
-          overflow: "auto",
-          marginTop: "20px",
-        }}
-      />
-    </div>
-  );
+  return <div id="map" style={{ width: "100%", height: "400px" }} />;
 };
 
 export default Map;

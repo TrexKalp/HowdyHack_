@@ -31,10 +31,6 @@ const Upload = () => {
     localStorage.setItem("points", JSON.stringify(points));
   }, [points]);
 
-  useEffect(() => {
-    localStorage.setItem("points", JSON.stringify(points));
-  }, [points]);
-
   const imageBoxStyles = {
     width: "150px", // Increased size
     height: "150px",
