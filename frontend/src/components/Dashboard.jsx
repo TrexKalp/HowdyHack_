@@ -37,6 +37,7 @@ import Shop from "./Shop";
 import Map from "./Map";
 import React, { useState, useEffect } from "react";
 import { useTokens } from "./Token";
+import Spotlight from "./Spotlight";
 
 const LinkItems = [
   { name: "Explore", icon: FiHome },
