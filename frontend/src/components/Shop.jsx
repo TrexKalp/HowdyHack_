@@ -2,6 +2,13 @@
 
 import {
   Box,
+  Flex,
+  Container,
+  Input,
+  Avatar,
+  AvatarGroup,
+  useBreakpointValue,
+  Icon,
   Center,
   useColorModeValue,
   Heading,
@@ -11,21 +18,54 @@ import {
   SimpleGrid,
   Progress,
   Button,
+  IconButton,
+  useToast,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Claim from "./Claim";
+// import AiFillCheckSquare from "react-icons/ai";
+import { AiFillCheckSquare } from "react-icons/ai";
 
 const IMAGE =
   "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80";
 
-export default function Shop() {
+export default function Shop({}) {
+  const [showClaim, setShowClaim] = useState(false); // New state
   const [points, setPoints] = useState(localStorage.getItem("points") || 0);
 
-  const [showClaim, setShowClaim] = useState(false); // New state
+  const toast = useToast(); // Initialize the useToast hook
 
-  const handleClaimClick = () => {
-    setShowClaim(true);
+  const handleClaimClick = (productPrice, productName) => {
+    if (points >= productPrice) {
+      // Check if the user has enough points to claim the product
+      const newPoints = points - productPrice;
+
+      // Update the points state and localStorage
+      setPoints(newPoints);
+      localStorage.setItem("points", newPoints.toString());
+
+      // Hide the claim component
+      setShowClaim(true);
+
+      // Show a success toast
+      toast({
+        title: `You've successfully claimed ${productName}!`,
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      // Show an error toast if the user doesn't have enough points
+      toast({
+        title: "Insufficient points",
+        description: "You don't have enough points to claim this product.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
   };
+
   // Add this code inside your MobileNav component
   window.addEventListener("storage", (e) => {
     if (e.key === "points") {
@@ -198,14 +238,13 @@ export default function Shop() {
       {showClaim ? (
         <>
           <Claim />
-          <Button
-            colorScheme="teal"
-            variant="outline"
-            mt={4}
+          <IconButton
+            size="4xl"
+            icon={<AiFillCheckSquare fontSize="100px" />}
             onClick={() => setShowClaim(false)}
-          >
-            Back to products
-          </Button>
+            colorScheme="maroon"
+            variant="ghost"
+          />
         </>
       ) : (
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={10}>
@@ -295,7 +334,7 @@ export default function Shop() {
                   <Button
                     colorScheme="maroon"
                     variant="solid"
-                    onClick={() => setShowClaim(true)}
+                    onClick={() => handleClaimClick(product.price)}
                   >
                     Claim
                   </Button>

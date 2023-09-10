@@ -13,6 +13,17 @@ import {
 import { useState, useEffect } from "react";
 import Tesseract from "tesseract.js";
 
+const gradientBoxStyles = {
+  bgGradient: "linear(to-r, teal.500, green.500)",
+  borderRadius: "md",
+  p: 6, // Increased padding for a larger box
+  boxShadow: "2xl",
+  display: "flex", // Make it a flex container
+  flexDirection: "column", // Stack children vertically
+  alignItems: "center", // Center children horizontally
+  justifyContent: "center", // Center children vertically
+};
+
 const Upload = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [fullRecognizedText, setFullRecognizedText] = useState("");
@@ -138,7 +149,9 @@ const Upload = () => {
           </Box>
         ))}
       </HStack>
-      <Box>
+
+      {/* Gradient box around the upload */}
+      <Box {...gradientBoxStyles}>
         <input
           type="file"
           accept="image/*"
@@ -147,14 +160,17 @@ const Upload = () => {
           id="file-upload"
         />
         <label htmlFor="file-upload">
-          <Button as="span">Choose an image</Button>
+          <Button as="span" mb={4}>
+            Choose an image
+          </Button>
         </label>
+        <Button onClick={handleUpload} colorScheme="blue">
+          Recognize Text
+        </Button>
       </Box>
-      <Button onClick={handleUpload} colorScheme="blue">
-        Recognize Text
-      </Button>
 
       {/* Gallery of uploaded images */}
+      {/* ... the rest of your component ... */}
     </VStack>
   );
 };

@@ -18,23 +18,23 @@ import {
 const avatars = [
   {
     name: "Ryan Florence",
-    url: "https://bit.ly/ryan-florence",
+    url: "https://thefan-brand.com/cdn/shop/products/texas-am-aggies-modern-disc-wall-sign-525895.jpg?v=1644363931",
   },
   {
     name: "Segun Adebayo",
-    url: "https://bit.ly/sage-adebayo",
+    url: "https://thefan-brand.com/cdn/shop/products/texas-am-aggies-modern-disc-wall-sign-525895.jpg?v=1644363931",
   },
   {
     name: "Kent Dodds",
-    url: "https://bit.ly/kent-c-dodds",
+    url: "https://thefan-brand.com/cdn/shop/products/texas-am-aggies-modern-disc-wall-sign-525895.jpg?v=1644363931",
   },
   {
     name: "Prosper Otemuyiwa",
-    url: "https://bit.ly/prosper-baba",
+    url: "https://thefan-brand.com/cdn/shop/products/texas-am-aggies-modern-disc-wall-sign-525895.jpg?v=1644363931",
   },
   {
     name: "Christian Nwamba",
-    url: "https://bit.ly/code-beast",
+    url: "https://thefan-brand.com/cdn/shop/products/texas-am-aggies-modern-disc-wall-sign-525895.jpg?v=1644363931",
   },
 ];
 
@@ -75,15 +75,15 @@ export default function Claim() {
             lineHeight={1.1}
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
           >
-            Senior web designers{" "}
+            Claim your gift{" "}
             <Text
               as={"span"}
               bgGradient="linear(to-r, red.400,pink.400)"
               bgClip="text"
             >
-              &
+              with
             </Text>{" "}
-            Full-Stack Developers
+            TamuTokens today!
           </Heading>
           <Stack direction={"row"} spacing={4} align={"center"}>
             <AvatarGroup>
@@ -155,7 +155,7 @@ export default function Claim() {
               lineHeight={1.1}
               fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
             >
-              Join our team
+              Free 2-Day Shipping
               <Text
                 as={"span"}
                 bgGradient="linear(to-r, red.400,pink.400)"
@@ -165,11 +165,11 @@ export default function Claim() {
               </Text>
             </Heading>
             <Text color={"gray.500"} fontSize={{ base: "sm", sm: "md" }}>
-              We’re looking for amazing engineers just like you! Become a part
-              of our rockstar engineering team and skyrocket your career!
+              Support small businesses everyday by using the Reveille Rewards
+              App!
             </Text>
           </Stack>
-          <Box as={"form"} mt={10}>
+          <Box as={"form"}>
             <Stack spacing={4}>
               <Input
                 placeholder="Name"
@@ -208,27 +208,6 @@ export default function Claim() {
                 }}
               />
             </Stack>
-            <Button
-              fontFamily={"heading"}
-              mt={8}
-              w={"full"}
-              bgGradient="linear(to-r, red.400,pink.400)"
-              color={"white"}
-              _hover={{
-                bgGradient: "linear(to-r, red.400,pink.400)",
-                boxShadow: "xl",
-              }}
-            >
-              Submit
-            </Button>
-            <Button
-              colorScheme="teal"
-              variant="outline"
-              mt={4}
-              onClick={() => setShowClaim(false)}
-            >
-              Back to products
-            </Button>
           </Box>
           form
         </Stack>

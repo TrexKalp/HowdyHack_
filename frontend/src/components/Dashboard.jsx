@@ -33,11 +33,10 @@ import {
 } from "react-icons/fi";
 import DarkModeSwitch from "./DarkModeSwitch";
 import Upload from "./Upload";
-import NearYou from "./NearYou";
 import Shop from "./Shop";
 import Map from "./Map";
-import Claim from "./Claim";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useTokens } from "./Token";
 
 const LinkItems = [
   { name: "Explore", icon: FiHome },
@@ -128,11 +127,21 @@ const NavItem = ({ icon, children, setActiveContent, ...rest }) => {
     </Box>
   );
 };
-
 const MobileNav = ({ onOpen, ...rest }) => {
   const savedFirstName = localStorage.getItem("firstName");
   const savedLastName = localStorage.getItem("lastName");
   const [tokens, setTokens] = useState(localStorage.getItem("points") || 0);
+
+  useEffect(() => {
+    const checkForTokenUpdates = setInterval(() => {
+      const currentTokens = localStorage.getItem("points");
+      if (tokens !== currentTokens) {
+        setTokens(currentTokens);
+      }
+    }, 500); // Checks every second. Adjust the timing if necessary.
+
+    return () => clearInterval(checkForTokenUpdates);
+  }, [tokens]);
 
   return (
     <Flex
