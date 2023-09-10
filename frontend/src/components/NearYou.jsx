@@ -1,4 +1,4 @@
-import { Grid, GridItem, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Text, Image } from "@chakra-ui/react";
 import React from 'react';
 
 const businessdata = [
@@ -88,6 +88,7 @@ const businessdata = [
   },
   { name: "iPho", img: "https://iphobcs.com/img/slide1.jpg" },
 ];
+
 const NearYou = () => {
   return (
     <Grid templateColumns="repeat(3, 1fr)" gap={6}>

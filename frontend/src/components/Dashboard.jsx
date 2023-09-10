@@ -268,7 +268,7 @@ const Dashboard = () => {
         {activeContent === "Upload" && <Upload />}
         {activeContent === "Shop" && <Shop />}
         {activeContent === "Explore" && <Map />}
-        {activeContent === 'Near You' && <NearYou />}
+        {activeContent === "NearYou" && <NearYou />}
       </Box>
     </Box>
   );
