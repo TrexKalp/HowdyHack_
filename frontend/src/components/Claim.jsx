@@ -75,15 +75,15 @@ export default function Claim() {
             lineHeight={1.1}
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
           >
-            Claim your gift{" "}
+            Your gift has been{" "}
             <Text
               as={"span"}
               bgGradient="linear(to-r, red.400,pink.400)"
               bgClip="text"
             >
-              with
+              claimed
             </Text>{" "}
-            TamuTokens today!
+            w/ TamuTokens!
           </Heading>
           <Stack direction={"row"} spacing={4} align={"center"}>
             <AvatarGroup>
