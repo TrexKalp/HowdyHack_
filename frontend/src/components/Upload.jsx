@@ -6,6 +6,9 @@ import {
   HStack,
   Image,
   useToast,
+  Avatar,
+  Tag,
+  TagLabel,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import Tesseract from "tesseract.js";
@@ -14,11 +17,19 @@ const Upload = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [fullRecognizedText, setFullRecognizedText] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
-  const [uploadedImages, setUploadedImages] = useState([]);
+  const [uploadedImages, setUploadedImages] = useState(() => {
+    const savedImages = localStorage.getItem("uploadedImages");
+    return savedImages ? JSON.parse(savedImages) : [];
+  });
   const [points, setPoints] = useState(() => {
     const savedPoints = localStorage.getItem("points");
     return savedPoints ? JSON.parse(savedPoints) : 0;
   });
+
+  useEffect(() => {
+    // Store the points in local storage whenever they change
+    localStorage.setItem("points", JSON.stringify(points));
+  }, [points]);
 
   useEffect(() => {
     localStorage.setItem("points", JSON.stringify(points));
@@ -106,9 +117,17 @@ const Upload = () => {
 
   return (
     <VStack spacing={4} mt={8}>
-      <Box mt={4}>
-        <Text fontWeight="bold">Total Points Earned:</Text>
-        <Text>{points}</Text>
+      <Box>
+        <Tag size="lg" colorScheme="red" borderRadius="full">
+          <Avatar
+            src="https://bit.ly/sage-adebayo"
+            size="xs"
+            name="Segun Adebayo"
+            ml={-1}
+            mr={2}
+          />
+          <TagLabel>Total Points Earned: {points} </TagLabel>
+        </Tag>
       </Box>
       <HStack spacing={4} mt={8} overflowX="auto">
         {uploadedImages.map((imageSrc, idx) => (

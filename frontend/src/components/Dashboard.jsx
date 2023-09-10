@@ -36,9 +36,11 @@ import Upload from "./Upload";
 // import use states from react
 import React from "react";
 import NearYou from "./NearYou";
+import Shop from "./Shop";
+import Map from "./Map";
 
 const LinkItems = [
-  { name: "Near You", icon: FiHome },
+  { name: "Explore", icon: FiHome },
   { name: "Upload", icon: FiTrendingUp },
   { name: "Points", icon: FiCompass },
   { name: "Shop", icon: FiStar },
@@ -178,7 +180,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
             ml={-1}
             mr={2}
           />
-          <TagLabel>TAMUTokens: {tokens} </TagLabel>
+          <TagLabel>TAMUTokens: {tokens || 0} </TagLabel>
         </Tag>
         <DarkModeSwitch />
 
@@ -233,7 +235,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
 
 const Dashboard = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [activeContent, setActiveContent] = React.useState("Near You");
+  const [activeContent, setActiveContent] = React.useState("Explore");
 
   return (
     <Box
@@ -263,7 +265,8 @@ const Dashboard = () => {
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {activeContent === "Upload" && <Upload />}
-        {activeContent === "Near You" && <NearYou />}
+        {activeContent === "Shop" && <Shop />}
+        {activeContent === "Explore" && <Map />}
       </Box>
     </Box>
   );
