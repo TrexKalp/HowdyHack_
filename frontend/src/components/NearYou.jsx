@@ -117,12 +117,12 @@ const businessdata = [
 
 const NearYou = () => {
   return (
-    <Flex justifyContent="space-between" flexWrap="wrap">
+    <Flex flexWrap="wrap">
       {businessdata.map((business) => (
         <a key={business.name} href={business.website} target="_blank" rel="noopener noreferrer">
           <Box
-            width="calc(33.33% - 16px)" // Adjust the width as needed
-            marginBottom="16px" // Adjust the vertical gap as needed
+            width="calc(33.33% - 16px)" // Set to 33.33% to create 3 columns
+            margin="8px" // Add some margin to create even gaps
             borderRadius="md"
             boxShadow="md"
             bg="white" // White background color
