@@ -116,14 +116,10 @@ const businessdata = [
 
 
 const NearYou = () => {
-  const columnStyle = {
-    width: "33.33%", // Set to 33.33% for 3 columns
-    padding: "8px", // Adjust padding as needed for spacing
-    boxSizing: "border-box",
-    display: "flex",
-    flexDirection: "column", // Stack items vertically
-    justifyContent: "space-between", // Evenly space items vertically
-    height: "400px", // Set a fixed height for each item
+  const containerStyle = {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)", // Three columns
+    gap: "16px", // Adjust the gap as needed
   };
 
   const itemStyle = {
@@ -135,26 +131,31 @@ const NearYou = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
+    <div style={containerStyle}>
       {businessdata.map((business) => (
-        <a key={business.name} href={business.website} target="_blank" rel="noopener noreferrer" style={{ ...columnStyle }}>
-          <div style={{ ...itemStyle }}>
-            <img
-              src={business.img}
-              alt={business.name}
-              width="100%"
-              height="auto"
-              style={{ borderRadius: "8px" }}
-            />
-            <Text fontSize="xl" mt={2} fontWeight="bold">
-              {business.name}
-            </Text>
-          </div>
+        <a
+          key={business.name}
+          href={business.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ ...itemStyle }}
+        >
+          <img
+            src={business.img}
+            alt={business.name}
+            width="100%"
+            height="auto"
+            style={{ borderRadius: "8px" }}
+          />
+          <Text fontSize="xl" mt={2} fontWeight="bold">
+            {business.name}
+          </Text>
         </a>
       ))}
     </div>
   );
 };
+
 
 export default NearYou;
 
