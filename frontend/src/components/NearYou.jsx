@@ -120,6 +120,10 @@ const NearYou = () => {
     width: "33.33%", // Set to 33.33% for 3 columns
     padding: "8px", // Adjust padding as needed for spacing
     boxSizing: "border-box",
+    display: "flex",
+    flexDirection: "column", // Stack items vertically
+    justifyContent: "space-between", // Evenly space items vertically
+    height: "400px", // Set a fixed height for each item
   };
 
   const itemStyle = {
