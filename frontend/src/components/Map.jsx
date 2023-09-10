@@ -224,9 +224,10 @@ const Map = () => {
       });
     };
 
+    const serviceURL = import.meta.env.VITE_MAP_URL;
+
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyC-Igl7GHE6yIUyp9GlqqpmFoIN7JmpY1o&callback=initMap&libraries=maps,marker&v=beta`;
-    script.async = true;
+    script.src = serviceURL;
     document.head.appendChild(script);
 
     return () => {
