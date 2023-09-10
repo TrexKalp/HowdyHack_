@@ -72,6 +72,7 @@ const SidebarContent = ({ onClose, setActiveContent, ...rest }) => {
         >
           Reveille Rewards
         </Heading>
+
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
