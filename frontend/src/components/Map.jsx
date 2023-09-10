@@ -244,7 +244,7 @@ const Map = () => {
         alignItems: "center",
       }}
     >
-      <div id="map" style={{ width: "100%", height: "400px" }} />
+      <div id="map" style={{ width: "100%", height: "550px" }} />
     </div>
   );
 };
