@@ -116,23 +116,25 @@ const businessdata = [
 
 
 const NearYou = () => {
+  const columnStyle = {
+    width: "33.33%", // Set to 33.33% for 3 columns
+    padding: "8px", // Adjust padding as needed for spacing
+    boxSizing: "border-box",
+  };
+
+  const itemStyle = {
+    borderRadius: "8px",
+    boxShadow: "md",
+    background: "white",
+    textAlign: "center",
+    transition: "transform 0.2s, box-shadow 0.2s",
+  };
+
   return (
-    <Flex flexWrap="wrap">
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
       {businessdata.map((business) => (
-        <a key={business.name} href={business.website} target="_blank" rel="noopener noreferrer">
-          <Box
-            width="calc(33.33% - 16px)" // Set to 33.33% to create 3 columns
-            margin="8px" // Add some margin to create even gaps
-            borderRadius="md"
-            boxShadow="md"
-            bg="white" // White background color
-            textAlign="center"
-            transition="transform 0.2s, box-shadow 0.2s"
-            _hover={{
-              transform: "translateY(-8px)", // Lift the box on hover
-              boxShadow: "lg", // Add shadow on hover
-            }}
-          >
+        <a key={business.name} href={business.website} target="_blank" rel="noopener noreferrer" style={{ ...columnStyle }}>
+          <div style={{ ...itemStyle }}>
             <img
               src={business.img}
               alt={business.name}
@@ -143,10 +145,10 @@ const NearYou = () => {
             <Text fontSize="xl" mt={2} fontWeight="bold">
               {business.name}
             </Text>
-          </Box>
+          </div>
         </a>
       ))}
-    </Flex>
+    </div>
   );
 };
 
