@@ -37,21 +37,20 @@ import Shop from "./Shop";
 import Map from "./Map";
 import React, { useState, useEffect } from "react";
 import { useTokens } from "./Token";
+import NearYou from "./NearYou";
 
 const LinkItems = [
   { name: "Explore", icon: FiHome },
   { name: "Upload", icon: FiTrendingUp },
   { name: "Shop", icon: FiStar },
-  { name: "Spotlight", icon: FiCompass}
+  { name: "Spotlight", icon: FiCompass },
 ];
 
 const SidebarContent = ({ onClose, setActiveContent, ...rest }) => {
   return (
     <Box
       transition="3s ease"
-      bg={useColorModeValue(
-        "#800000"
-      )}
+      bg={useColorModeValue("#800000")}
       borderRight="1px"
       borderRightColor={useColorModeValue("gray.200", "gray.700")}
       w={{ base: "full", md: 60 }}
@@ -148,9 +147,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"
-      bg={useColorModeValue(
-        "#800000"
-      )}
+      bg={useColorModeValue("#800000")}
       borderBottomWidth="1px"
       borderBottomColor={useColorModeValue("gray.200", "gray.700")}
       justifyContent={{ base: "space-between", md: "flex-end" }}
@@ -245,12 +242,7 @@ const Dashboard = () => {
   const [activeContent, setActiveContent] = React.useState("Explore");
 
   return (
-    <Box
-      minH="100vh"
-      bg={useColorModeValue(
-        "white"
-      )}
-    >
+    <Box minH="100vh" bg={useColorModeValue("white")}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}

@@ -9,12 +9,16 @@ import {
   Avatar,
   Tag,
   TagLabel,
+  Heading,
+  Flex,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import Tesseract from "tesseract.js";
+import { InfoIcon } from "@chakra-ui/icons";
 
 const gradientBoxStyles = {
-  bgGradient: "linear(to-r, teal.500, green.500)",
+  bgGradient: "linear(to-r, red.400, red.500)",
+
   borderRadius: "md",
   p: 6, // Increased padding for a larger box
   boxShadow: "2xl",
@@ -63,7 +67,11 @@ const Upload = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result);
-        setUploadedImages((prevImages) => [...prevImages, reader.result]);
+        setUploadedImages((prevImages) => {
+          const newImages = [...prevImages, reader.result];
+          localStorage.setItem("uploadedImages", JSON.stringify(newImages));
+          return newImages;
+        });
       };
       reader.readAsDataURL(file);
     }
@@ -123,55 +131,62 @@ const Upload = () => {
   }, [recognizedTexts]);
 
   return (
-    <VStack spacing={4} mt={8}>
-      <Box>
-        <Tag size="lg" colorScheme="red" borderRadius="full">
-          <Avatar
-            src="https://bit.ly/sage-adebayo"
-            size="xs"
-            name="Segun Adebayo"
-            ml={-1}
-            mr={2}
+    <>
+      <Flex alignItems="center" justifyContent="center">
+        <Box
+          textAlign="center"
+          py={10}
+          px={6}
+          width="1000px"
+          justifyContent="center"
+        >
+          <InfoIcon boxSize={"50px"} color={"blue.500"} />
+          <Heading as="h2" size="xl" mt={6} mb={2}>
+            What Is This Page For?
+          </Heading>
+          <Text color={"gray.500"}>
+            Using highly-trained optical character recognition (OCR) technology,
+            upload your receipts here to extract how much you paid at your local
+            small businesses! From there, you gain points that you can use to
+            redeem for Aggie gear!
+          </Text>
+        </Box>
+      </Flex>
+      <VStack spacing={2} mt={8}>
+        <HStack spacing={4} mt={8} overflowX="auto">
+          {uploadedImages.map((imageSrc, idx) => (
+            <Box
+              key={idx}
+              width="225px"
+              height="225px"
+              bgSize="cover"
+              bgPosition="center"
+            >
+              <Image src={imageSrc} boxSize="325px" alt="Uploaded preview" />
+            </Box>
+          ))}
+        </HStack>
+
+        {/* Gradient box around the upload */}
+        <Box {...gradientBoxStyles} height="150px" width="300px">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            hidden
+            id="file-upload"
           />
-          <TagLabel>Total Points Earned: {points} </TagLabel>
-        </Tag>
-      </Box>
-      <HStack spacing={4} mt={8} overflowX="auto">
-        {uploadedImages.map((imageSrc, idx) => (
-          <Box
-            key={idx}
-            width="100px"
-            height="100px"
-            bgSize="cover"
-            bgPosition="center"
-          >
-            <Image src={imageSrc} boxSize="100px" alt="Uploaded preview" />
-          </Box>
-        ))}
-      </HStack>
-
-      {/* Gradient box around the upload */}
-      <Box {...gradientBoxStyles}>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          hidden
-          id="file-upload"
-        />
-        <label htmlFor="file-upload">
-          <Button as="span" mb={4}>
-            Choose an image
+          <label htmlFor="file-upload">
+            <Button as="span" mb={4}>
+              Choose an image
+            </Button>
+          </label>
+          <Button onClick={handleUpload} colorScheme="blue">
+            Scan Receipt
           </Button>
-        </label>
-        <Button onClick={handleUpload} colorScheme="blue">
-          Recognize Text
-        </Button>
-      </Box>
-
-      {/* Gallery of uploaded images */}
-      {/* ... the rest of your component ... */}
-    </VStack>
+        </Box>
+      </VStack>
+    </>
   );
 };
 

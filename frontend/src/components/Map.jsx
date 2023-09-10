@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Success from "./Info";
 
 const Map = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -73,16 +74,14 @@ const Map = () => {
       },
     ];
 
-
-      window.initMap = function () {
-        // Create a map centered at the specified coordinates
-        const start = { lat: 30.617712020874023, lng: -96.31748962402344 };
-        const map = new window.google.maps.Map(document.getElementById("map"), {
-          center: start,
-          zoom: 14,
-          styles: mapStyles,
-        });
-  
+    window.initMap = function () {
+      // Create a map centered at the specified coordinates
+      const start = { lat: 30.617712020874023, lng: -96.31748962402344 };
+      const map = new window.google.maps.Map(document.getElementById("map"), {
+        center: start,
+        zoom: 14,
+        styles: mapStyles,
+      });
 
       // Define marker positions and titles
       const markers = [
@@ -236,20 +235,20 @@ const Map = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <div id="map" style={{ width: "100%", height: "550px" }} />
-    </div>
+    <>
+      <Success />
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <div id="map" style={{ width: "100%", height: "450px" }} />
+      </div>
+    </>
   );
 };
 
 export default Map;
-
-
-
