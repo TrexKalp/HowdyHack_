@@ -92,8 +92,8 @@ const businessdata = [
 const NearYou = () => {
   return (
     <Grid templateColumns="1fr" gap={6}>
-      {businessdata.map((business) => (
-        <Box key={business.name} mb={6}>
+      {businessdata.map((business, index) => (
+        <Box key={business.name} mb={6} gridColumn="span 3">
           <Box
             p={4}
             boxShadow="md"
@@ -117,6 +117,7 @@ const NearYou = () => {
     </Grid>
   );
 };
+
 
 
 export default NearYou;
