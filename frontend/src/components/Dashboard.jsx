@@ -36,12 +36,12 @@ import Upload from "./Upload";
 import NearYou from "./NearYou";
 import Shop from "./Shop";
 import Map from "./Map";
+import Claim from "./Claim";
 import React, { useState } from "react";
 
 const LinkItems = [
   { name: "Explore", icon: FiHome },
   { name: "Upload", icon: FiTrendingUp },
-  { name: "Points", icon: FiCompass },
   { name: "Shop", icon: FiStar },
   { name: "Settings", icon: FiSettings },
 ];

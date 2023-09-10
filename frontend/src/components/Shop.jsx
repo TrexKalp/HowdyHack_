@@ -13,12 +13,19 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import Claim from "./Claim";
 
 const IMAGE =
   "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80";
 
 export default function Shop() {
   const [points, setPoints] = useState(localStorage.getItem("points") || 0);
+
+  const [showClaim, setShowClaim] = useState(false); // New state
+
+  const handleClaimClick = () => {
+    setShowClaim(true);
+  };
   // Add this code inside your MobileNav component
   window.addEventListener("storage", (e) => {
     if (e.key === "points") {
@@ -188,104 +195,116 @@ export default function Shop() {
 
   return (
     <Center py={12}>
-      <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={10}>
-        {products.map((product, index) => (
-          <Box
-            key={index}
-            role={"group"}
-            p={6}
-            maxW={"330px"}
-            w={"full"}
-            bg={useColorModeValue("white", "gray.800")}
-            boxShadow={"2xl"}
-            rounded={"lg"}
-            pos={"relative"}
-            zIndex={1}
+      {showClaim ? (
+        <>
+          <Claim />
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            mt={4}
+            onClick={() => setShowClaim(false)}
           >
+            Back to products
+          </Button>
+        </>
+      ) : (
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={10}>
+          {products.map((product, index) => (
             <Box
+              key={index}
+              role={"group"}
+              p={6}
+              maxW={"330px"}
+              w={"full"}
+              bg={useColorModeValue("white", "gray.800")}
+              boxShadow={"2xl"}
               rounded={"lg"}
-              mt={-12}
               pos={"relative"}
-              height={"230px"}
-              _after={{
-                transition: "all .3s ease",
-                content: '""',
-                w: "full",
-                h: "full",
-                pos: "absolute",
-                top: 5,
-                left: 0,
-                backgroundImage: `url(${product.image})`,
-                filter: "blur(15px)",
-                zIndex: -1,
-              }}
-              _groupHover={{
-                _after: {
-                  filter: "blur(20px)",
-                },
-              }}
+              zIndex={1}
             >
-              <Image
+              <Box
                 rounded={"lg"}
-                height={230}
-                width={282}
-                objectFit={"cover"}
-                src={product.image}
-                alt={product.title}
-                textAlign="center"
-              />
-            </Box>
-            <Stack pt={10} align={"center"}>
-              <Text
-                color={"gray.500"}
-                fontSize={"sm"}
-                textTransform={"uppercase"}
-                textAlign="center"
+                mt={-12}
+                pos={"relative"}
+                height={"230px"}
+                _after={{
+                  transition: "all .3s ease",
+                  content: '""',
+                  w: "full",
+                  h: "full",
+                  pos: "absolute",
+                  top: 5,
+                  left: 0,
+                  backgroundImage: `url(${product.image})`,
+                  filter: "blur(15px)",
+                  zIndex: -1,
+                }}
+                _groupHover={{
+                  _after: {
+                    filter: "blur(20px)",
+                  },
+                }}
               >
-                {product.brand}
-              </Text>
-
-              <Heading
-                fontSize={"2xl"}
-                fontFamily={"body"}
-                fontWeight={500}
-                textAlign="center"
-              >
-                {product.title}
-              </Heading>
-
-              <Stack direction={"row"} align={"center"}>
-                <Text fontWeight={800} fontSize={"xl"}>
-                  {product.price} {product.currency}
-                </Text>
-                <Text textDecoration={"line-through"} color={"gray.600"}>
-                  {product.discountPrice}
-                </Text>
-              </Stack>
-            </Stack>
-            <Progress
-              value={(points / product.price) * 100} // Set the progress value based on your data
-              size="sm" // Customize the size if needed
-              colorScheme="maroon" // Choose a color scheme for the progress bar
-              borderRadius="full" // Make it round
-              mt={4} // Adjust the margin-top as needed
-            />
-            {(points / product.price) * 100 > 100 && (
-              <Center mt={4}>
-                <Button
-                  colorScheme="maroon"
-                  variant="solid"
-                  onClick={() => {
-                    // Handle the purchase action here
-                  }}
+                <Image
+                  rounded={"lg"}
+                  height={230}
+                  width={282}
+                  objectFit={"cover"}
+                  src={product.image}
+                  alt={product.title}
+                  textAlign="center"
+                />
+              </Box>
+              <Stack pt={10} align={"center"}>
+                <Text
+                  color={"gray.500"}
+                  fontSize={"sm"}
+                  textTransform={"uppercase"}
+                  textAlign="center"
                 >
-                  Purchase
-                </Button>
-              </Center>
-            )}
-          </Box>
-        ))}
-      </SimpleGrid>
+                  {product.brand}
+                </Text>
+
+                <Heading
+                  fontSize={"2xl"}
+                  fontFamily={"body"}
+                  fontWeight={500}
+                  textAlign="center"
+                >
+                  {product.title}
+                </Heading>
+
+                <Stack direction={"row"} align={"center"}>
+                  <Text fontWeight={800} fontSize={"xl"}>
+                    {product.price} {product.currency}
+                  </Text>
+                  <Text textDecoration={"line-through"} color={"gray.600"}>
+                    {product.discountPrice}
+                  </Text>
+                </Stack>
+              </Stack>
+              <Progress
+                value={(points / product.price) * 100}
+                size="sm"
+                colorScheme="maroon"
+                borderRadius="full"
+                mt={4}
+              />
+              {(points / product.price) * 100 > 100 && (
+                <Center mt={4}>
+                  <Button
+                    colorScheme="maroon"
+                    variant="solid"
+                    onClick={() => setShowClaim(true)}
+                  >
+                    Claim
+                  </Button>
+                </Center>
+              )}
+            </Box>
+          ))}
+        </SimpleGrid>
+      )}
     </Center>
   );
 }
