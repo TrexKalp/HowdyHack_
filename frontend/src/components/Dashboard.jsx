@@ -36,8 +36,6 @@ import Upload from "./Upload";
 // import use states from react
 import React from "react";
 import NearYou from "./NearYou";
-import Shop from "./Shop";
-import Map from "./Map";
 
 const LinkItems = [
   { name: "Explore", icon: FiHome },
