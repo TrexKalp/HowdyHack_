@@ -89,37 +89,35 @@ const businessdata = [
   { name: "iPho", img: "https://iphobcs.com/img/slide1.jpg" },
 ];
 
+
 const NearYou = () => {
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap={4}>
-      {businessdata.map((business, index) => (
+    <Flex justifyContent="space-between" flexWrap="wrap">
+      {businessdata.map((business) => (
         <Box
           key={business.name}
-          gridColumn={`span 1`}
-          gridRow={`span ${index % 3 === 0 ? 2 : 1}`}
+          width="calc(33.33% - 16px)" // Adjust the width as needed
+          marginBottom="16px" // Adjust the vertical gap as needed
+          borderRadius="md"
+          boxShadow="md"
+          bg="white" // White background color
+          textAlign="center"
         >
-          <Box
-            p={4}
-            boxShadow="md"
-            borderRadius="md"
-            bg="white" // White background color
-            textAlign="center"
-          >
-            <img
-              src={business.img}
-              alt={business.name}
-              width="100%"
-              height="auto"
-              style={{ borderRadius: "8px" }}
-            />
-            <Text fontSize="xl" mt={2} fontWeight="bold">
-              {business.name}
-            </Text>
-          </Box>
+          <img
+            src={business.img}
+            alt={business.name}
+            width="100%"
+            height="auto"
+            style={{ borderRadius: "8px" }}
+          />
+          <Text fontSize="xl" mt={2} fontWeight="bold">
+            {business.name}
+          </Text>
         </Box>
       ))}
-    </Grid>
+    </Flex>
   );
 };
+
 
 export default NearYou;
