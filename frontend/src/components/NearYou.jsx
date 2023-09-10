@@ -107,10 +107,6 @@ const businessdata = [
     img: "https://s3-media0.fl.yelpcdn.com/bphoto/MJHwaRjWQAyJCqlGUw-Y7Q/l.jpg",
     website:'https://www.facebook.com/BCSasianmarket/',
   },
-  { name: "iPho", 
-    img: "https://iphobcs.com/img/slide1.jpg",
-    website:'https://iphobcs.com/', 
-  },
 ];
 
 
