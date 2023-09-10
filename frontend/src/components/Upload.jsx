@@ -91,7 +91,7 @@ const Upload = () => {
 
     let isValidStore = false;
     const validStores = [
-      "Sweet Eugenes",
+      "Sweet Eugene's",
       "The Beef and Reef Food Truck",
       "1541 Pastries and Coffee",
       "Sabi Boutique",
@@ -153,7 +153,7 @@ const Upload = () => {
           return;
         }
         // Check if the text has been recognized before
-        else if (recognizedTexts.includes(result.data.text)) {
+        if (recognizedTexts.includes(result.data.text)) {
           toast({
             title: "Duplicate Receipt",
             description: "This receipt has already been recognized.",
