@@ -37,7 +37,7 @@ import Shop from "./Shop";
 import Map from "./Map";
 import React, { useState, useEffect } from "react";
 import { useTokens } from "./Token";
-import NearYou from "./NearYou";
+import Spotlight from "./Spotlight";
 
 const LinkItems = [
   { name: "Explore", icon: FiHome },
@@ -265,7 +265,7 @@ const Dashboard = () => {
         {activeContent === "Upload" && <Upload />}
         {activeContent === "Shop" && <Shop />}
         {activeContent === "Explore" && <Map />}
-        {activeContent === "Spotlight" && <NearYou />}
+        {activeContent === "Spotlight" && <Spotlight />}
       </Box>
     </Box>
   );
