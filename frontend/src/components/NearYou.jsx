@@ -102,6 +102,11 @@ const NearYou = () => {
           boxShadow="md"
           bg="white" // White background color
           textAlign="center"
+          transition="transform 0.2s, box-shadow 0.2s"
+          _hover={{
+            transform: "translateY(-8px)", // Lift the box on hover
+            boxShadow: "lg", // Add shadow on hover
+          }}
         >
           <img
             src={business.img}
@@ -118,6 +123,5 @@ const NearYou = () => {
     </Flex>
   );
 };
-
 
 export default NearYou;
