@@ -49,8 +49,7 @@ export default function SimpleCard({ switchToSignup, onLogin }) {
       align={"center"}
       justify={"center"}
       bg={useColorModeValue(
-        "linear-gradient(135deg, #E29495, #D47583, #BF556A)",
-        "gray.800"
+      "linear-gradient(326deg, #7c0000 0%, #3e0000 74%)", "#7c0000"
       )}
     >
       <Stack spacing={8} mx={"auto"} maxW={"xl"} py={12} px={6}>
