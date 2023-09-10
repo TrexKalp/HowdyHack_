@@ -124,10 +124,17 @@ const NearYou = () => {
 
   const itemStyle = {
     borderRadius: "8px",
-    boxShadow: "md",
     background: "white",
     textAlign: "center",
     transition: "transform 0.2s, box-shadow 0.2s",
+    boxShadow: "md",
+    padding: "16px",
+    cursor: "pointer",
+  };
+
+  const itemHoverStyle = {
+    transform: "translateY(-4px)",
+    boxShadow: "lg",
   };
 
   return (
