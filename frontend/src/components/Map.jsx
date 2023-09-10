@@ -267,15 +267,11 @@ const Map = () => {
         alignItems: "center",
       }}
     >
-      <div
-        id="map"
-        style={{ width: "100%", maxWidth: "600px", height: "400px" }}
-      />
+      <div id="map" style={{ width: "100%", height: "400px" }} />
       <div
         id="directionsPanel"
         style={{
           width: "100%",
-          maxWidth: "600px",
           height: "400px",
           overflow: "auto",
           marginTop: "20px",
