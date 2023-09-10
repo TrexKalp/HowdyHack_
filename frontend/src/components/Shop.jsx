@@ -329,7 +329,7 @@ export default function Shop({}) {
                 borderRadius="full"
                 mt={4}
               />
-              {(points / product.price) * 100 > 100 && (
+              {(points / product.price) * 100 >= 100 && (
                 <Center mt={4}>
                   <Button
                     colorScheme="maroon"
