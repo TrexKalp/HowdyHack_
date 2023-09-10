@@ -38,6 +38,7 @@ import Map from "./Map";
 import React, { useState, useEffect } from "react";
 import { useTokens } from "./Token";
 import Spotlight from "./Spotlight";
+import SimpleCard from "./SimpleCard";
 
 const LinkItems = [
   { name: "Explore", icon: FiHome },
@@ -125,7 +126,7 @@ const NavItem = ({ icon, children, setActiveContent, ...rest }) => {
     </Box>
   );
 };
-const MobileNav = ({ onOpen, ...rest }) => {
+const MobileNav = ({ onOpen, setShowSimpleCard, ...rest }) => {
   const savedFirstName = localStorage.getItem("firstName");
   const savedLastName = localStorage.getItem("lastName");
   const [tokens, setTokens] = useState(localStorage.getItem("points") || 0);
@@ -199,7 +200,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 <Avatar
                   size={"sm"}
                   src={
-                    "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                    "https://today.tamu.edu/wp-content/uploads/2021/02/210205_NewRev_JKE_3.jpg"
                   }
                 />
                 <VStack
@@ -216,7 +217,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   </Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
-                  <FiChevronDown />
+                  <FiChevronDown color="white" />
                 </Box>
               </HStack>
             </MenuButton>
@@ -224,11 +225,9 @@ const MobileNav = ({ onOpen, ...rest }) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
-              <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem onClick={() => setShowSimpleCard(true)}>
+                Sign out
+              </MenuItem>
             </MenuList>
           </Menu>
         </Flex>
@@ -240,34 +239,40 @@ const MobileNav = ({ onOpen, ...rest }) => {
 const Dashboard = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [activeContent, setActiveContent] = React.useState("Explore");
+  const [showSimpleCard, setShowSimpleCard] = useState(false);
+  if (showSimpleCard) {
+    return <SimpleCard />;
+  }
 
   return (
-    <Box minH="100vh" bg={useColorModeValue("white")}>
-      <SidebarContent
-        onClose={() => onClose}
-        display={{ base: "none", md: "block" }}
-        setActiveContent={setActiveContent}
-      />
-      <Drawer
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full"
-      >
-        <DrawerContent>
-          <SidebarContent onClose={onClose} />
-        </DrawerContent>
-      </Drawer>
-      <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        {activeContent === "Upload" && <Upload />}
-        {activeContent === "Shop" && <Shop />}
-        {activeContent === "Explore" && <Map />}
-        {activeContent === "Spotlight" && <Spotlight />}
+    <>
+      <Box minH="100vh" bg={useColorModeValue("white")}>
+        <SidebarContent
+          onClose={() => onClose}
+          display={{ base: "none", md: "block" }}
+          setActiveContent={setActiveContent}
+        />
+        <Drawer
+          isOpen={isOpen}
+          placement="left"
+          onClose={onClose}
+          returnFocusOnClose={false}
+          onOverlayClick={onClose}
+          size="full"
+        >
+          <DrawerContent>
+            <SidebarContent onClose={onClose} />
+          </DrawerContent>
+        </Drawer>
+        <MobileNav onOpen={onOpen} setShowSimpleCard={setShowSimpleCard} />
+        <Box ml={{ base: 0, md: 60 }} p="4">
+          {activeContent === "Upload" && <Upload />}
+          {activeContent === "Shop" && <Shop />}
+          {activeContent === "Explore" && <Map />}
+          {activeContent === "Spotlight" && <Spotlight />}
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 
