@@ -118,18 +118,19 @@ const businessdata = [
 const NearYou = () => {
   const containerStyle = {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)", // Three columns
-    gap: "16px", // Adjust the gap as needed
+    gridTemplateColumns: "repeat(3, 1fr)", 
+    gap: "16px", 
   };
 
   const itemStyle = {
     borderRadius: "8px",
-    background: "white",
+    background: "#800000",
     textAlign: "center",
     transition: "transform 0.2s, box-shadow 0.2s",
     boxShadow: "md",
     padding: "16px",
     cursor: "pointer",
+    color:"white",
   };
 
   const itemHoverStyle = {
