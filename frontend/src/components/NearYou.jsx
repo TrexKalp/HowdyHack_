@@ -1,21 +1,7 @@
 import { Grid, GridItem, Text } from "@chakra-ui/react";
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from "@chakra-ui/react";
+import React from 'react';
 
-const NearYou = () => {
-  // make a test function that only returns an h1
-  return (
-    <div>
-      <h1>Test</h1>
-    </div>
-  );
-};
-
-/*const businessdata = [
+const businessdata = [
   {
     name: "Sweet Eugene's",
     img: "https://images.squarespace-cdn.com/content/v1/549230e3e4b0524c33444a1e/1580392255373-0ZQR6K722HOHO2L1O0CM/Avery+and+Sophia.jpg",
@@ -102,25 +88,27 @@ const NearYou = () => {
   },
   { name: "iPho", img: "https://iphobcs.com/img/slide1.jpg" },
 ];
-const Photo = businessdata.map((businessdata) => (
-  <figure>
-    <GridItem
-      className="photoOfOrder"
-      w="100%"
-      h="10"
-      bg="blue.500"
-      key={businessdata.name}
-      src={postdata.img}
-      wrapped
-      ui={false}
-    />
-    <Text fontSize="xl">{businessdata.name}</Text>
-  </figure>
-));
-
-<Grid templateColumns="repeat(5, 1fr)" gap={6}>
-  {Photo}
-</Grid>;
-*/
+const NearYou = () => {
+  return (
+    <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+      {businessdata.map((business) => (
+        <GridItem key={business.name}>
+          <figure>
+            <Image
+              src={business.img}
+              alt={business.name}
+              w="100%"
+              h="auto"
+              objectFit="cover"
+            />
+            <Text fontSize="xl" textAlign="center">
+              {business.name}
+            </Text>
+          </figure>
+        </GridItem>
+      ))}
+    </Grid>
+  );
+};
 
 export default NearYou;

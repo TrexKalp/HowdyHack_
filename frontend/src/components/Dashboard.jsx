@@ -44,6 +44,7 @@ const LinkItems = [
   { name: "Upload", icon: FiTrendingUp },
   { name: "Shop", icon: FiStar },
   { name: "Settings", icon: FiSettings },
+  { name: "NearYou", icon: FiCompass}
 ];
 
 const SidebarContent = ({ onClose, setActiveContent, ...rest }) => {
@@ -267,6 +268,7 @@ const Dashboard = () => {
         {activeContent === "Upload" && <Upload />}
         {activeContent === "Shop" && <Shop />}
         {activeContent === "Explore" && <Map />}
+        {activeContent === 'Near You' && <NearYou />}
       </Box>
     </Box>
   );
