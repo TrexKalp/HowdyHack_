@@ -51,8 +51,7 @@ const SidebarContent = ({ onClose, setActiveContent, ...rest }) => {
     <Box
       transition="3s ease"
       bg={useColorModeValue(
-        "linear-gradient(135deg, #E29495, #D47583, #BF556A)",
-        "gray.800"
+        "#800000"
       )}
       borderRight="1px"
       borderRightColor={useColorModeValue("gray.200", "gray.700")}
@@ -141,8 +140,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
       height="20"
       alignItems="center"
       bg={useColorModeValue(
-        "linear-gradient(135deg, #E29495, #D47583, #BF556A)",
-        "gray.800"
+        "#800000"
       )}
       borderBottomWidth="1px"
       borderBottomColor={useColorModeValue("gray.200", "gray.700")}
@@ -241,8 +239,7 @@ const Dashboard = () => {
     <Box
       minH="100vh"
       bg={useColorModeValue(
-        "radial-gradient(circle, #EEC5C6, #E6B2B4, #D99CA1)",
-        "gray.800"
+        "white"
       )}
     >
       <SidebarContent
