@@ -91,7 +91,7 @@ const businessdata = [
 
 const NearYou = () => {
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+    <Grid templateColumns="repeat(3, 1fr)" gap={2}>
       {businessdata.map((business) => (
         <GridItem key={business.name}>
           <Box
