@@ -91,14 +91,14 @@ const businessdata = [
 
 const NearYou = () => {
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap={2} grid-column-gap={2}>
+    <Grid templateColumns="1fr" gap={6}>
       {businessdata.map((business) => (
-        <GridItem key={business.name}>
+        <Box key={business.name} mb={6}>
           <Box
             p={4}
             boxShadow="md"
             borderRadius="md"
-            bg="white" 
+            bg="white" // White background color
             textAlign="center"
           >
             <img
@@ -112,10 +112,11 @@ const NearYou = () => {
               {business.name}
             </Text>
           </Box>
-        </GridItem>
+        </Box>
       ))}
     </Grid>
   );
 };
+
 
 export default NearYou;
